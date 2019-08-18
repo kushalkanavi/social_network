@@ -1,0 +1,18 @@
+{% extends "loginApp/base.html" %} {% block content %}
+<center>
+	<br>
+	<br>
+	<br>
+    <h1>Welcome to Social Network Platform</h1>
+    <br>
+    <br>
+    <h3 style="color:blue;">Click on 'LOGIN' to login to Social Network Platform</h3>
+    <br>
+    <h3 style="color:blue;">Click on 'REGISTER' to for new User</h3>
+    <br>
+    <br>
+    <br>
+    <a href="{%url 'auth:login'%}"><input type="button" name="" value="LOGIN"></a>
+    <a href="{%url 'auth:register'%}"><input type="button" name="" value="Register"></a>
+</center>
+{% endblock content %}

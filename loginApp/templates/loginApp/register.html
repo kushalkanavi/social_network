@@ -1,0 +1,33 @@
+{% extends "loginApp/base.html" %}
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+<center>
+    <form method="POST" action="{%url 'auth:createuser' %}">
+        {% csrf_token %}
+        <p>
+            <label>Username</label>
+            <input type="text" name="username">
+        </p>
+        <p>
+            <label>Password</label>
+            <input type="password" name="password">
+        </p>
+        <button type="submit">Register</button>
+    </form>
+    <br>
+    <br>
+    <br>
+    <a href="{%url 'auth:index' %}">
+        <input type="button" value="BACK">
+    </a>
+</center>
+{% endblock content %}

@@ -1,0 +1,143 @@
+{% extends "loginApp/base.html" %} {% block content %}{% load static %}
+<center>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <a href="{%url 'auth:logout' %}"><input type="button" name="" value="Logout"></a>
+            <br><br>
+            <br><br>
+            <a href="{%url 'social:main'%}"><input type="button" name="" value="RESET"></a>
+        </div>
+        <div class="col-md-4">
+            <a href="{%url 'social:create_user'%}"><input type="button" name="" value="Create Users"></a>
+            <br><br>
+            <br><br>
+            <a href="{%url 'social:create_connection'%}"><input type="button" name="" value="Create Connection"></a>
+        </div>
+        <div class="col-md-4">
+            <input type="button" name="" value="Edit Profile" data-toggle="modal" data-target="#myModal">
+            <br><br>
+            <br><br>
+            <input type="button" name="" value="Friends Suggestion" data-toggle="modal" data-target="#myModal1">
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Enter Invetory Info</h4>
+                        </div>
+                        <form action="{%url 'social:saveProfile' id=data.0.id %}" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="modal-body">
+                                {{ form }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+    <!-- Suggestion Modal -->
+            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Enter Invetory Info</h4>
+                        </div>
+{#                        {{ recommendation}}#}
+                        <table class="table table-hover" style="text-align:center;">
+                          <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Age</td>
+                                <td>Location</td>
+                                <td>Interest</td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for d in recommendation %}
+                              <tr>
+                                <td>{{d.name}}</td>
+                                <td>{{ d.age }}</td>
+                                <td>{{ d.location }}</td>
+                                <td>{{ d.interests }}</td>
+                            </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<br>
+<br>
+<br>
+    <form action="{%url 'social:friendSearch' %}" method="POST">
+      {% csrf_token %}
+      <input id="search_text" type="text" name="search" placeholder="Enter First Name/Last Name Of Friends to Search" style="width:500px; text-align:center;" />
+      <input class="btn btn-lng btn-danger" id="" type="Submit" value="Search" style="margin-right: 20px;"/>
+    </form>
+<br>
+
+{% if srch %}
+<table class="table table-hover" style="text-align:center;">
+  <thead>
+    <tr>
+        <td>Name</td>
+        <td>Age</td>
+        <td>Location</td>
+        <td>Interest</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for d in srch %}
+
+      <tr>
+        <td>{{d.firstname}} {{d.lastname}}</td>
+        <td>{{ d.age }}</td>
+        <td>{{ d.location }}</td>
+        <td>{{ d.interests }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+<br>
+
+<table class="table table-hover" style="text-align:center;">
+  <thead>
+    <tr>
+        <td>Name</td>
+        <td>Age</td>
+        <td>Location</td>
+        <td>Interest</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for d in data %}
+      <tr>
+        <td>{{d.firstname}} {{d.lastname}}</td>
+        <td>{{ d.age }}</td>
+        <td>{{ d.location }}</td>
+        <td>{{ d.interests }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</center>
+{% endblock content %}
