@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
+import django_heroku
 import os
 from django.urls import reverse, reverse_lazy
 
@@ -129,3 +130,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = reverse_lazy('social:main')
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
