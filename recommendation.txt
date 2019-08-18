@@ -1,0 +1,1 @@
+For Recommendation, My approach Immediate friends of User friends. That is second level of friends of user. And also I have recommending friends on age basis also.
