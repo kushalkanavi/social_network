@@ -99,7 +99,7 @@ class Create_User(View):
                            'Writing', 'Gardening', 'Animal Care']
 
         count = 1
-        while count <= 100:
+        while count <= 10000:
             if count % 3 == 0:
                 firstname = random.choice(random_first_name_girl)
                 gender = 'Female'
