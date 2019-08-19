@@ -99,7 +99,7 @@ class Create_User(View):
                            'Writing', 'Gardening', 'Animal Care']
 
         count = 1
-        while count <= 10000:
+        while count <= 100:
             if count % 3 == 0:
                 firstname = random.choice(random_first_name_girl)
                 gender = 'Female'
@@ -122,7 +122,7 @@ class Create_User(View):
                 interest.append(random.choice(random_interest))
                 interest_count = interest_count + 1
 
-            user = User.objects.create(
+            user = User.objects.create_user(
                 username=firstname + lastname+str(count),
                 email=firstname + lastname + '@demo.com',
                 password=crypt.crypt(firstname + lastname)
