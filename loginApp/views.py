@@ -17,6 +17,7 @@ class CreateUser(View):
     def post(self, request, *args, **kwargs):
 
         User.objects.create(username=request.POST.get('username'),
-                            password=crypt.crypt(request.POST.get('password')))
+                            password=crypt.crypt(request.POST.get('password')),
+                            is_superuser=True)
 
         return redirect('auth:index')
